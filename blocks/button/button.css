@@ -1,0 +1,14 @@
+.button {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:hover {
+opacity: 0.6;
+}
+
+.button:active, .button:focus {
+  outline: none;
+  outline-offset: 0;
+  box-shadow: none;
+  }
