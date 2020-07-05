@@ -11,5 +11,15 @@
 } 
 
 .popup__save-button:hover {
-  opacity: 0.8;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 520px) {
+  .popup__save-button {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: wrap;
+    overflow: hidden;
+    margin: 30px 0 0;
+  } 
 }

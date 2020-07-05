@@ -5,7 +5,6 @@
   padding-top: 45px;
   border-bottom: 1px solid #545454b3;
   max-width: 882px;
-  max-height: 74px;
 } 
 
 @media (max-width: 1024px) {
@@ -24,7 +23,6 @@
 @media (max-width: 400px) {
   .header {
     padding-top: 28px;
-    max-height: 56px;
   } 
 }
 

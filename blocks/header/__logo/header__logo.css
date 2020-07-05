@@ -1,6 +1,8 @@
 .header__logo {
   padding-left: 3px;
-  padding-bottom: 40px;
+  padding-bottom: 37px;
+  width: 142.01px;
+  height: 33.4px;
 }
 
 @media (max-width: 800px) {
@@ -14,6 +16,6 @@
   .header__logo {
     width: 103.74px;
     height: 24.4px;
-    padding-bottom: 31.6px;
+    padding-bottom: 28.6px;
   } 
 }

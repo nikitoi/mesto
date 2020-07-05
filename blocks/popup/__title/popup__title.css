@@ -4,3 +4,14 @@
   line-height: 29px;
   margin: 0;
 }
+
+@media (max-width: 520px) {
+  .popup__title {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: wrap;
+    overflow: hidden;
+    font-size: 18px;
+    line-height: 20px;
+  } 
+}
