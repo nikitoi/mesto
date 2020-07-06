@@ -2,7 +2,6 @@ const editProfileButton = document.querySelector('.profile__edit-btn');
 const closeModalButton = document.querySelector('.popup__close-btn');
 const modal = document.querySelector('.popup');
 const form = modal.querySelector('.popup__form');
-const saveChangesButton = form.querySelector('.popup__save-button');
  
 const inputName = form.querySelector('.popup__field_type_name');  
 const inputOccupation = form.querySelector('.popup__field_type_occupation');  
@@ -34,4 +33,4 @@ function submitChanges(event) {
 
 editProfileButton.addEventListener('click', editInfo); 
 closeModalButton.addEventListener('click', toggleModal); 
-saveChangesButton.addEventListener('click', submitChanges); 
+form.addEventListener('submit', submitChanges); 
