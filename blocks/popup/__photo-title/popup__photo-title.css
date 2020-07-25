@@ -1,0 +1,17 @@
+.popup__photo-title {
+  font-size: 12px;
+  line-height: 15px;
+  margin: 0;
+  color: #fff;
+  font-weight: normal;
+  padding-top: 10px;
+}
+
+@media (max-width: 520px) {
+  .popup__photo-title {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: wrap;
+    overflow: hidden;
+  } 
+}

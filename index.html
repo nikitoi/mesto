@@ -28,49 +28,7 @@
           <button type="button" aria-label="Добавить" class="profile__add-btn button"></button>
         </section>
 
-        <section class="places">
-          <div class="place">
-            <img class="place__image" src="./images/karachaevsk.png" alt="Часовня">
-            <div class="place__details">
-              <h2 class="place__title">Карачаевск</h2>
-              <button type="button" aria-label="Понравилось" class="place__like-btn"></button>
-            </div>
-          </div>
-          <div class="place">
-            <img class="place__image" src="./images/elbrus.png" alt="Поле">
-            <div class="place__details">
-              <h2 class="place__title">Гора Эльбрус</h2>
-              <button type="button" aria-label="Понравилось" class="place__like-btn"></button>
-            </div>
-          </div>
-          <div class="place">
-            <img class="place__image" src="./images/dombay.png" alt="Горы">
-            <div class="place__details">
-              <h2 class="place__title">Домбай</h2>
-              <button type="button" aria-label="Понравилось" class="place__like-btn"></button>
-            </div>
-          </div>
-          <div class="place">
-            <img class="place__image" src="./images/elbrus.png" alt="Поле">
-            <div class="place__details">
-              <h2 class="place__title">Гора Эльбрус</h2>
-              <button type="button" aria-label="Понравилось" class="place__like-btn"></button>
-            </div>
-          </div>
-          <div class="place">
-            <img class="place__image" src="./images/dombay.png" alt="Горы">
-            <div class="place__details">
-              <h2 class="place__title">Домбай</h2>
-              <button type="button" aria-label="Понравилось" class="place__like-btn"></button>
-            </div>
-          </div>
-          <div class="place">
-            <img class="place__image" src="./images/karachaevsk.png" alt="Часовня">
-            <div class="place__details">
-              <h2 class="place__title">Карачаево-Черкессия</h2>
-              <button type="button" aria-label="Понравилось" class="place__like-btn button"></button>
-            </div>
-          </div>
+        <section class="places"> 
         </section>
 
       </main>
@@ -81,7 +39,7 @@
 
     </div> <!--page-->
 
-    <div class="popup">      
+    <div class="popup popup_type_edit-profile">      
       <div class="popup__container">
         <button type="button" aria-label="Закрыть" class="popup__close-btn button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -92,6 +50,38 @@
         </form>
       </div>      
     </div>
+
+    <div class="popup popup_type_add-place">   
+      <div class="popup__container">
+        <button type="button" aria-label="Закрыть" class="popup__close-btn button"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form action="#" name="new-place" method="POST" class="popup__form">
+          <input type="text" name="title" required class="popup__field popup__field_type_title" value="" placeholder="Название">
+          <input type="text" name="image-link" required class="popup__field popup__field_type_image-link" value="" placeholder="Ссылка на картинку">
+          <button type="submit" class="popup__save-button button">Создать</button>
+        </form>
+      </div>      
+    </div>
+
+    <div class="popup popup_type_photo">   
+      <div class="popup__container popup__container_no-background">
+        <button type="button" aria-label="Закрыть" class="popup__close-btn button"></button>
+        <img class="popup__photo" src="" alt="Фото места">
+        <h3 class="popup__photo-title"></h3>
+      </div>      
+    </div>
+
+    <template class="card-template">
+      <div class="place">
+        <img class="place__image" src="" alt="">
+        <button type="button" aria-label="Удалить" class="place__delete-btn button"></button>
+        <div class="place__details">
+          <h2 class="place__title"></h2>
+          <button type="button" aria-label="Понравилось" class="place__like-btn button"></button>
+        </div>
+      </div>
+    </template>
+
     <script src="./script/index.js"></script>
 
   </body>

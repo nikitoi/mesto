@@ -1,13 +1,17 @@
 @import url(./__close-btn/popup__close-btn.css); 
 @import url(./__container/popup__container.css); 
+@import url(./__container/_no-background/popup__container_no-background.css); 
 @import url(./__field/popup__field.css); 
 @import url(./__form/popup__form.css); 
 @import url(./__save-button/popup__save-button.css); 
 @import url(./__title/popup__title.css); 
+@import url(./__photo-title/popup__photo-title.css); 
+@import url(./__photo/popup__photo.css); 
+@import url(./_type/popup_type_photo.css); 
 
 .popup {
   position: fixed;
-  display: none;
+  display: flex;
   background-color: #00000080;
   top: 0;
   left: 0;
@@ -15,6 +19,10 @@
   height: 100%;
   justify-content: center;
   align-items: center;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s ease-out;
 }
 
 

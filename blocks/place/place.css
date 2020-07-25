@@ -1,7 +1,9 @@
 @import url(./__details/place__details.css);
 @import url(./__image/place__image.css);
 @import url(./__like-btn/place__like-btn.css);
+@import url(./__like-btn/_liked/place__like-btn_liked.css);
 @import url(./__title/place__title.css);
+@import url(./__delete-btn/place__delete-btn.css);
 
 .place {
   background-color: #ffffff;
@@ -9,4 +11,5 @@
   flex-direction: column;
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
 } 
