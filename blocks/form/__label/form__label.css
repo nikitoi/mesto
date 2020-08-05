@@ -1,0 +1,7 @@
+.form__label {
+  width: 100%;
+  max-width: 358px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}

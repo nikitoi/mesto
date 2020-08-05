@@ -61,10 +61,16 @@ editProfileButton.addEventListener('click', () => {
   inputOccupation.value = profileOccupation.textContent; 
 
   toggleModal(editProfileModal);
+
+  closePopupBackground(editProfileModal);
+  closePopupEscape(editProfileModal);
 }); 
 
 addPlaceButton.addEventListener('click', () => {
   toggleModal(addCardModal);
+
+  closePopupBackground(addCardModal);
+  closePopupEscape(addCardModal);
 }); 
 
 editProfileModalCloseButton.addEventListener('click', () => {
@@ -81,6 +87,29 @@ openPhotoModalCloseButton.addEventListener('click', () => {
 
 editForm.addEventListener('submit', submitProfileChanges); 
 addForm.addEventListener('submit', addPlace); 
+
+
+//Закрыть окно по клику на фон
+function closePopupBackground(modal) {
+  modal.addEventListener('click', (evt) => {
+   if(evt.target.classList.contains('popup_opened')) {
+    toggleModal(modal);
+   }
+  }); 
+};
+
+//Закрыть окно через esc
+function closePopupEscape(modal) {
+  document.addEventListener('keydown', (evt) => {
+   if(evt.key === 'Escape') {
+    closeModal(modal);
+   }
+  }); 
+ };
+
+ function closeModal(modal) { 
+  modal.classList.remove('popup_opened'); 
+} 
 
 
 //Находим шаблон в html и клонируем
@@ -106,6 +135,9 @@ function createCard(data) {
     openPhotoModalImg.src = cardImage.src;
 
     toggleModal(openPhotoModal);
+
+    closePopupBackground(openPhotoModal);
+    closePopupEscape(openPhotoModal);
   });
 
   cardLikeButton.addEventListener('click', () => {
@@ -132,3 +164,8 @@ function renderCard(data) {
 initialCards.forEach((data) => {
   renderCard(data);
 })
+
+
+
+
+ 
