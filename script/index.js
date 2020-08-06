@@ -16,114 +16,116 @@ const addCardModalCloseButton = addCardModal.querySelector('.popup__close-btn');
 const openPhotoModalCloseButton = openPhotoModal.querySelector('.popup__close-btn');
 
 //Инпуты
-const inputName = editForm.querySelector('.popup__field_type_name');  
-const inputOccupation = editForm.querySelector('.popup__field_type_occupation');  
-const inputTitle = addForm.querySelector('.popup__field_type_title');  
-const inputImageLink = addForm.querySelector('.popup__field_type_image-link');  
+const inputName = editForm.querySelector('.popup__field_type_name');
+const inputOccupation = editForm.querySelector('.popup__field_type_occupation');
+const inputTitle = addForm.querySelector('.popup__field_type_title');
+const inputImageLink = addForm.querySelector('.popup__field_type_image-link');
 
 //Инфо из профиля
-const profileName = document.querySelector('.profile__name'); 
-const profileOccupation = document.querySelector('.profile__occupation'); 
+const profileName = document.querySelector('.profile__name');
+const profileOccupation = document.querySelector('.profile__occupation');
 
 //Данные изображения
-const openPhotoModalTitle = openPhotoModal.querySelector('.popup__photo-title'); 
-const openPhotoModalImg = openPhotoModal.querySelector('.popup__photo'); 
+const openPhotoModalTitle = openPhotoModal.querySelector('.popup__photo-title');
+const openPhotoModalImg = openPhotoModal.querySelector('.popup__photo');
 
-// Переключатели отображения попапа
-function toggleModal(modal) { 
-  modal.classList.toggle('popup_opened'); 
-} 
+// Открытие попапа
+function openModal(modal) {
+  modal.classList.add('popup_opened');
+
+  closePopupBackground(modal);
+  closePopupEscape(modal);
+}
+
+// Закрытие попапа
+function closeModal(modal) {
+  modal.classList.remove('popup_opened');
+
+  modal.removeEventListener('keydown', closePopupEscape);
+  modal.removeEventListener('click', closePopupBackground);
+}
+
 
 // Сохранение внесенных в профиль изменений
-function submitProfileChanges(event) { 
-  event.preventDefault(); 
+function submitProfileChanges(event) {
+  event.preventDefault();
 
-  profileName.textContent = inputName.value; 
-  profileOccupation.textContent = inputOccupation.value; 
- 
-  toggleModal(editProfileModal);
-} 
+  profileName.textContent = inputName.value;
+  profileOccupation.textContent = inputOccupation.value;
+
+  closeModal(editProfileModal);
+}
 
 
 // Добавление нового места
-function addPlace(event) { 
-  event.preventDefault(); 
+function addPlace(event) {
+  event.preventDefault();
 
-  renderCard({name: inputTitle.value, link: inputImageLink.value});
- 
-  toggleModal(addCardModal);
-} 
+  renderCard({ name: inputTitle.value, link: inputImageLink.value });
+
+  closeModal(addCardModal);
+}
 
 
 //Слушатели
 editProfileButton.addEventListener('click', () => {
-  inputName.value = profileName.textContent; 
-  inputOccupation.value = profileOccupation.textContent; 
+  inputName.value = profileName.textContent;
+  inputOccupation.value = profileOccupation.textContent;
 
-  toggleModal(editProfileModal);
-
-  closePopupBackground(editProfileModal);
-  closePopupEscape(editProfileModal);
-}); 
+  openModal(editProfileModal);
+});
 
 addPlaceButton.addEventListener('click', () => {
-  toggleModal(addCardModal);
-
-  closePopupBackground(addCardModal);
-  closePopupEscape(addCardModal);
-}); 
+  openModal(addCardModal);
+});
 
 editProfileModalCloseButton.addEventListener('click', () => {
-  toggleModal(editProfileModal);
-}); 
+  closeModal(editProfileModal);
+});
 addCardModalCloseButton.addEventListener('click', () => {
-  toggleModal(addCardModal);
-}); 
+  closeModal(addCardModal);
+});
 
 openPhotoModalCloseButton.addEventListener('click', () => {
-  toggleModal(openPhotoModal);
-}); 
+  closeModal(openPhotoModal);
+});
 
 
-editForm.addEventListener('submit', submitProfileChanges); 
-addForm.addEventListener('submit', addPlace); 
+editForm.addEventListener('submit', submitProfileChanges);
+addForm.addEventListener('submit', addPlace);
 
 
 //Закрыть окно по клику на фон
 function closePopupBackground(modal) {
   modal.addEventListener('click', (evt) => {
-   if(evt.target.classList.contains('popup_opened')) {
-    toggleModal(modal);
-   }
-  }); 
-};
+    if (evt.target.classList.contains('popup_opened')) {
+      closeModal(modal);
+    }
+  });
+}
 
 //Закрыть окно через esc
 function closePopupEscape(modal) {
   document.addEventListener('keydown', (evt) => {
-   if(evt.key === 'Escape') {
-    closeModal(modal);
-   }
-  }); 
- };
-
- function closeModal(modal) { 
-  modal.classList.remove('popup_opened'); 
-} 
+    if (evt.key === 'Escape') {
+      closeModal(modal);
+    }
+  });
+}
 
 
 //Находим шаблон в html и клонируем
 const cardTemplate = document.querySelector('.card-template').content.querySelector('.place');
 
 function createCard(data) {
-  
+
   const cardElement = cardTemplate.cloneNode(true);
 
   //Выбираем элементы карточки
   const cardImage = cardElement.querySelector('.place__image');
   const cardTitle = cardElement.querySelector('.place__title');
-  const cardLikeButton = cardElement.querySelector('.place__like-btn'); 
-  const cardDeleteButton = cardElement.querySelector('.place__delete-btn'); 
+  const cardLikeButton = cardElement.querySelector('.place__like-btn');
+  const cardDeleteButton = cardElement.querySelector('.place__delete-btn');
 
   //Заполняем значениями из списка
   cardTitle.textContent = data.name;
@@ -133,11 +135,9 @@ function createCard(data) {
   cardImage.addEventListener('click', () => {
     openPhotoModalTitle.textContent = cardTitle.textContent;
     openPhotoModalImg.src = cardImage.src;
+    openPhotoModalImg.alt = cardImage.alt;
 
-    toggleModal(openPhotoModal);
-
-    closePopupBackground(openPhotoModal);
-    closePopupEscape(openPhotoModal);
+    openModal(openPhotoModal);
   });
 
   cardLikeButton.addEventListener('click', () => {
@@ -149,7 +149,7 @@ function createCard(data) {
   });
 
   return cardElement;
-} 
+}
 
 
 //Место куда будем вставлять карточки
@@ -158,14 +158,9 @@ const cards = document.querySelector('.places');
 //Добавляем карточки в нужную секцию
 function renderCard(data) {
   cards.prepend(createCard(data));
-} 
+}
 
 //Создаем карточки
 initialCards.forEach((data) => {
   renderCard(data);
 })
-
-
-
-
- 
