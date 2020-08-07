@@ -47,10 +47,13 @@ function closeModal(modal) {
 
 
 //Закрыть окно по клику на фон 
-function closePopupBackground() {
+function closePopupBackground(evt) {
   const modal = document.querySelector('.popup_opened');
-  closeModal(modal);
+  if(evt.target.classList.contains('popup')) {
+    closeModal(modal);
+  }
 }
+
 
 //Закрыть окно через esc 
 function closePopupEscape(evt) {
