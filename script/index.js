@@ -33,17 +33,33 @@ const openPhotoModalImg = openPhotoModal.querySelector('.popup__photo');
 function openModal(modal) {
   modal.classList.add('popup_opened');
 
-  closePopupBackground(modal);
-  closePopupEscape(modal);
+  document.addEventListener('keydown', closePopupEscape);
+  modal.addEventListener('click', closePopupBackground);
 }
 
 // Закрытие попапа
 function closeModal(modal) {
   modal.classList.remove('popup_opened');
 
-  modal.removeEventListener('keydown', closePopupEscape);
+  document.removeEventListener('keydown', closePopupEscape);
   modal.removeEventListener('click', closePopupBackground);
 }
+
+
+//Закрыть окно по клику на фон 
+function closePopupBackground() {
+  const modal = document.querySelector('.popup_opened');
+  closeModal(modal);
+}
+
+//Закрыть окно через esc 
+function closePopupEscape(evt) {
+  const modal = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closeModal(modal);
+  }
+}
+
 
 
 // Сохранение внесенных в профиль изменений
@@ -65,6 +81,7 @@ function addPlace(event) {
 
   closeModal(addCardModal);
 }
+
 
 
 //Слушатели
@@ -95,23 +112,6 @@ editForm.addEventListener('submit', submitProfileChanges);
 addForm.addEventListener('submit', addPlace);
 
 
-//Закрыть окно по клику на фон
-function closePopupBackground(modal) {
-  modal.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closeModal(modal);
-    }
-  });
-}
-
-//Закрыть окно через esc
-function closePopupEscape(modal) {
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      closeModal(modal);
-    }
-  });
-}
 
 
 //Находим шаблон в html и клонируем
